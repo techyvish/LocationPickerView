@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LocationPickerView"
-  s.version      = "1.2.0"
+  s.version      = "1.2.1"
   s.summary      = "MKMapView + UITableView + Parallax scrolling. Provides a framework for building an interactive location picker on iOS."
   s.homepage     = "https://github.com/mstrchrstphr/LocationPickerView"
   s.screenshots  = "https://raw.github.com/mstrchrstphr/LocationPickerView/master/github-images/location-picker.gif"
