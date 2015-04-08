@@ -8,6 +8,7 @@
 #import <MapKit/MapKit.h>
 #import "LocationPickerView.h"
 #import "UIImage+Icons.h"
+#import "MMMaterialDesignSpinner.h"
 
 @interface LocationPickerView ()
 
@@ -145,6 +146,59 @@
         if (self.mapViewDidLoadBlock) {
             self.mapViewDidLoadBlock(self);
         }
+    }
+    
+    
+    
+    if ( !self.navigationView )
+    {
+        self.navigationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 76.0)];
+        self.navigationView.backgroundColor = self.navigationBackgroundColor;
+        [self addSubview:self.navigationView];
+        
+        if ( !self.hamburgerMenuButton )
+        {
+            self.hamburgerMenuButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+            [self.hamburgerMenuButton setImage:[UIImage imageNamed:@"whiteHamburgerManu"] forState:UIControlStateNormal];
+            if ( self.delegate && [[self delegate] respondsToSelector:@selector(hamburgerButtonTapped:)] )
+            {
+                [self.hamburgerMenuButton addTarget:self.delegate action:@selector(hamburgerButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            [self addSubview:self.hamburgerMenuButton];
+        }
+        
+        self.hamburgerMenuButton.frame = CGRectMake(16.0,
+                                        30.0,
+                                        30.,
+                                        30.);
+        
+        if ( !self.titleLabel )
+        {
+            self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(16.0+30.0+8.0, 35.0, self.frame.size.width-2*(16.0+30.0+8.0), 20)];
+            [self addSubview:self.titleLabel];
+            [self.titleLabel setFont:self.titleFont];
+            [self.titleLabel setTextColor:self.titleTextColor];
+            [self.titleLabel setText:self.titleText];
+        }
+        
+        self.titleLabel.frame = CGRectMake( 16.0+30.0+8.0,
+                                            35.0,
+                                            self.frame.size.width-2*(16.0+30.0+8.0),
+                                            20);
+        
+        if ( !self.spinner )
+        {
+            self.spinner = [[MMMaterialDesignSpinner alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+            self.spinner.tintColor = [UIColor whiteColor];
+            self.spinner.lineWidth = 3.0;
+            [self addSubview:self.spinner];
+        }
+        
+        self.spinner.frame = CGRectMake(self.navigationView.frame.size.width - 30.0 - 16.0,
+                                        30.0,
+                                        30.,
+                                        30.);
+        
     }
     
     // Add tap gesture to table
@@ -516,6 +570,18 @@
             self.mapView.frame = newMapFrame;
         }
     }
+}
+
+#pragma mark - spinner 
+
+-(void)startAnimating
+{
+    [_spinner startAnimating];
+}
+
+-(void)stopAnimating
+{
+    [_spinner stopAnimating];
 }
 
 @end

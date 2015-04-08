@@ -10,6 +10,7 @@
 
 @class MKMapView;
 @class LocationPickerView;
+@class MMMaterialDesignSpinner;
 
 @protocol MKMapViewDelegate;
 @protocol LocationPickerViewDelegate;
@@ -110,6 +111,22 @@ typedef void (^LocationPickerViewBlock)(LocationPickerView *locationPicker);
 /** Set custom close button map at x/y point */
 - (void)setCustomCloseButton:(UIButton *)closeButton atPoint:(CGPoint)buttonPoint;
 
+
+#pragma mark - Tailored to specific requirements.
+
+
+@property (nonatomic,strong) UIView   *navigationView;
+@property (nonatomic,strong) UIColor  *navigationBackgroundColor;
+@property (nonatomic,strong) MMMaterialDesignSpinner *spinner;
+@property (nonatomic,strong) UIButton *hamburgerMenuButton;
+@property (nonatomic,strong) UILabel  *titleLabel;
+@property (nonatomic,strong) UIFont   *titleFont;
+@property (nonatomic,strong) UIColor  *titleTextColor;
+@property (nonatomic,strong) NSString *titleText;
+
+-(void) startAnimating;
+-(void) stopAnimating;
+
 @end
 
 
@@ -146,5 +163,7 @@ typedef void (^LocationPickerViewBlock)(LocationPickerView *locationPicker);
  perform custom animations or set attributes of the map/table. */
 - (void)locationPicker:(LocationPickerView *)locationPicker
       mapViewWasHidden:(MKMapView *)mapView;
+
+- (void)hamburgerButtonTapped:(id)sender;
 
 @end
